@@ -15,6 +15,7 @@
   --color-accent: #dfe104;
   --color-accent-fg: #000000;
   --color-accent-ink: #dfe104; /* אקצנט לטקסט (קריא על הרקע): צהוב בכהה, כהה ב-light */
+  --color-destructive: #ff6b6b; /* שגיאות — אדום קריא על רקע כהה */
 
   --font-display: var(--font-heebo), var(--font-grotesk), system-ui, sans-serif;
   --font-body: var(--font-heebo), system-ui, sans-serif;
@@ -41,6 +42,7 @@ html.light {
   --color-accent: #e3e600; /* צהוב חומצה (מעט עז יותר לקריאות מילוי) */
   --color-accent-fg: #0a0a0a;
   --color-accent-ink: #111111; /* אקצנט-טקסט כהה (הצהוב שמור למילויים) */
+  --color-destructive: #cc1f1f; /* שגיאות — אדום כהה קריא על נייר בהיר */
   color-scheme: light;
 }
 
