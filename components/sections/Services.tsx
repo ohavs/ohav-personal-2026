@@ -1,6 +1,7 @@
 "use client";
 
 import Reveal from "@/components/ui/Reveal";
+import Parallax from "@/components/ui/Parallax";
 import { SERVICES } from "@/lib/data";
 
 export default function Services() {
@@ -17,9 +18,11 @@ export default function Services() {
           </div>
         </Reveal>
 
-        <h2 className="display mt-6 text-[12vw] leading-none text-fg md:text-[7vw]">
-          איך אני יכול לעזור
-        </h2>
+        <Parallax amount={50}>
+          <h2 className="display mt-6 text-[12vw] leading-none text-fg md:text-[7vw]">
+            איך אני יכול לעזור
+          </h2>
+        </Parallax>
 
         {/* שורות שירות */}
         <div className="mt-12 border-t-2 border-line">

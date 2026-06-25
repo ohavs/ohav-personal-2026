@@ -1,6 +1,6 @@
 "use client";
 
-import Marquee from "@/components/ui/Marquee";
+import ScrollMarquee from "@/components/ui/ScrollMarquee";
 import { SITE } from "@/lib/data";
 
 export default function Footer() {
@@ -9,12 +9,15 @@ export default function Footer() {
   return (
     <footer className="relative border-t-2 border-line bg-bg">
       {/* מרקיזה ענקית */}
-      <div className="border-b-2 border-line py-4">
-        <Marquee direction="ltr" duration={26} pauseOnHover={false}>
-          <span className="display flex items-center text-[10vw] leading-none text-stroke">
-            בוא נדבר&nbsp;&nbsp;—&nbsp;&nbsp;LET&apos;S TALK&nbsp;&nbsp;—&nbsp;&nbsp;
+      <div className="overflow-hidden border-b-2 border-line py-6 md:py-8">
+        <ScrollMarquee baseVelocity={-7} separator="✶" separatorClassName="text-accent">
+          <span className="display text-stroke text-[12vw] leading-[1.05] md:text-[9vw]">
+            בוא נדבר
           </span>
-        </Marquee>
+          <span className="display text-accent px-[0.25em] text-[12vw] leading-[1.05] md:text-[9vw]">
+            LET&apos;S TALK
+          </span>
+        </ScrollMarquee>
       </div>
 
       <div className="mx-auto flex max-w-[1600px] flex-col gap-8 px-5 py-10 md:flex-row md:items-end md:justify-between md:px-10">

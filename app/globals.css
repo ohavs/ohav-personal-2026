@@ -39,8 +39,7 @@
   }
 
   html {
-    scroll-behavior: smooth;
-    /* Lenis controls scrolling on capable devices */
+    scroll-behavior: auto; /* Lenis controls smooth scrolling */
   }
 
   html.lenis,
@@ -63,7 +62,7 @@
     font-feature-settings: "ss01", "cv01";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    overflow-x: hidden;
+    overflow-x: clip; /* prevents horizontal scrollbar without breaking Lenis/sticky */
   }
 
   ::selection {
@@ -130,41 +129,6 @@
   }
 }
 
-/* ───────────────────────────────────────────────────────────────────────────
-   Marquee (infinite, native CSS — runs even before JS hydration)
-   ─────────────────────────────────────────────────────────────────────────── */
-@keyframes marquee-rtl {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-@keyframes marquee-ltr {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-.marquee {
-  display: flex;
-  width: max-content;
-  will-change: transform;
-}
-.marquee[data-dir="rtl"] {
-  animation: marquee-rtl var(--duration, 28s) linear infinite;
-}
-.marquee[data-dir="ltr"] {
-  animation: marquee-ltr var(--duration, 28s) linear infinite;
-}
-.marquee-wrap:hover .marquee {
-  animation-play-state: paused;
-}
-
 /* Grain / noise overlay */
 .grain::before {
   content: "";
@@ -192,8 +156,5 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
-  }
-  .marquee {
-    animation: none !important;
   }
 }

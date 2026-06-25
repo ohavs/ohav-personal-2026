@@ -1,23 +1,15 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
 import Reveal, { RevealWords } from "@/components/ui/Reveal";
+import ScrollMarquee from "@/components/ui/ScrollMarquee";
+import Parallax from "@/components/ui/Parallax";
 import { ABOUT_PARAGRAPHS, STATS } from "@/lib/data";
 
 export default function About() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const xMarker = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
-
   return (
     <section
       id="about"
-      ref={ref}
-      className="relative overflow-hidden border-t-2 border-line bg-bg py-20 md:py-32"
+      className="relative overflow-hidden border-t-2 border-line bg-bg pt-20 md:pt-32"
     >
       <div className="px-5 md:px-10">
         <Reveal>
@@ -26,7 +18,7 @@ export default function About() {
 
         {/* הצהרה ענקית */}
         <div className="mt-8 max-w-6xl">
-          <h2 className="display text-[8vw] leading-[0.95] text-fg md:text-[5.5vw]">
+          <h2 className="display text-[9vw] leading-[0.95] text-fg md:text-[5.5vw]">
             <RevealWords text="אני מעצב חוויות" />
             <br />
             <RevealWords
@@ -66,16 +58,28 @@ export default function About() {
         </div>
       </div>
 
-      {/* מרקר טקסט ענק ברקע */}
-      <motion.div
-        style={{ x: xMarker }}
-        aria-hidden="true"
-        className="pointer-events-none mt-20 select-none whitespace-nowrap"
-      >
-        <span className="display text-[18vw] leading-none text-muted/60 text-stroke">
-          DESIGN · BUILD · REPEAT · DESIGN · BUILD · REPEAT
-        </span>
-      </motion.div>
+      {/* להקת מרקיזה כפולה ענקית — שתי שורות בכיוונים מנוגדים (parallax) */}
+      <Parallax amount={60} className="mt-20 flex flex-col gap-2 md:mt-28 md:gap-4">
+        <ScrollMarquee baseVelocity={5} separator="✶" separatorClassName="text-accent">
+          <span className="display text-stroke flex items-center gap-[0.35em] text-[15vw] uppercase leading-[1.1] md:text-[11vw]">
+            <span>DESIGN</span>
+            <span className="text-accent not-italic [-webkit-text-stroke:0] [color:var(--color-accent)]">·</span>
+            <span>BUILD</span>
+            <span className="[-webkit-text-stroke:0] [color:var(--color-accent)]">·</span>
+            <span>REPEAT</span>
+          </span>
+        </ScrollMarquee>
+
+        <ScrollMarquee baseVelocity={-5} separator="✶" separatorClassName="text-fg/40">
+          <span className="display flex items-center gap-[0.35em] text-accent text-[15vw] leading-[1.1] md:text-[11vw]">
+            <span>לעצב</span>
+            <span className="text-fg/30">·</span>
+            <span>לבנות</span>
+            <span className="text-fg/30">·</span>
+            <span>להדהים</span>
+          </span>
+        </ScrollMarquee>
+      </Parallax>
     </section>
   );
 }

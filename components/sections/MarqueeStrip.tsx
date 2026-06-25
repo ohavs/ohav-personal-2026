@@ -1,13 +1,13 @@
 "use client";
 
-import Marquee from "@/components/ui/Marquee";
+import ScrollMarquee from "@/components/ui/ScrollMarquee";
 import { MARQUEE_WORDS } from "@/lib/data";
 
 function Star() {
   return (
     <svg
       viewBox="0 0 24 24"
-      className="mx-6 h-7 w-7 shrink-0 md:h-9 md:w-9"
+      className="h-6 w-6 md:h-8 md:w-8"
       aria-hidden="true"
       fill="currentColor"
     >
@@ -18,18 +18,23 @@ function Star() {
 
 export default function MarqueeStrip() {
   return (
-    <section className="relative border-y-2 border-line bg-accent py-5 text-accent-fg md:py-6">
-      <Marquee direction="rtl" duration={32} pauseOnHover={false}>
-        {MARQUEE_WORDS.map((word, i) => (
-          <span
-            key={i}
-            className="display flex items-center text-4xl uppercase md:text-6xl"
-          >
-            {word}
-            <Star />
-          </span>
-        ))}
-      </Marquee>
+    <section className="relative border-y-2 border-line bg-accent py-4 text-accent-fg md:py-6">
+      <ScrollMarquee
+        baseVelocity={6}
+        separator={<Star />}
+        separatorClassName="text-accent-fg/70"
+      >
+        <span className="display flex items-center gap-[0.3em] text-4xl uppercase md:text-6xl">
+          {MARQUEE_WORDS.map((word, i) => (
+            <span key={i} className="flex items-center gap-[0.3em]">
+              {word}
+              {i < MARQUEE_WORDS.length - 1 && (
+                <span className="opacity-50">/</span>
+              )}
+            </span>
+          ))}
+        </span>
+      </ScrollMarquee>
     </section>
   );
 }

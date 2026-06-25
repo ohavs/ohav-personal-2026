@@ -11,7 +11,8 @@ if (typeof window !== "undefined") {
 
 /**
  * גלילה חלקה (Lenis) משולבת עם GSAP ScrollTrigger.
- * מכבד prefers-reduced-motion — אם המשתמש ביקש פחות תנועה, לא מפעילים גלילה חלקה.
+ * - autoRaf=false: אנחנו מריצים את ה-RAF דרך gsap.ticker (לולאה אחת, בלי קפיצות).
+ * - מכבד prefers-reduced-motion: אם המשתמש ביקש פחות תנועה, גלילה רגילה ללא Lenis.
  */
 export default function SmoothScroll({
   children,
@@ -29,11 +30,15 @@ export default function SmoothScroll({
     }
 
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
       touchMultiplier: 1.6,
+      autoRaf: false,
     });
+
+    // חושף לדיבוג/בדיקות
+    (window as unknown as { lenis?: Lenis }).lenis = lenis;
 
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -43,7 +48,7 @@ export default function SmoothScroll({
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
-    // anchor links → smooth scroll via Lenis
+    // קישורי עוגן → גלילה חלקה דרך Lenis
     const onClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement)?.closest(
         'a[href^="#"]'
@@ -65,6 +70,7 @@ export default function SmoothScroll({
       document.removeEventListener("click", onClick);
       gsap.ticker.remove(raf);
       lenis.destroy();
+      delete (window as unknown as { lenis?: Lenis }).lenis;
     };
   }, []);
 

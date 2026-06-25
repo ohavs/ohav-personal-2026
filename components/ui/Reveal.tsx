@@ -9,7 +9,7 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 export default function Reveal({
   children,
   delay = 0,
-  y = 28,
+  y = 48,
   className = "",
   once = true,
 }: {
