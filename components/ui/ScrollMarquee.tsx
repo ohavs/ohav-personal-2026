@@ -23,7 +23,7 @@ export default function ScrollMarquee({
   baseVelocity = 4,
   className = "",
   separator = "—",
-  separatorClassName = "text-accent",
+  separatorClassName = "text-accent-ink",
   pauseOnHover = false,
 }: {
   children: ReactNode;
@@ -82,7 +82,7 @@ export default function ScrollMarquee({
       onMouseLeave={() => (hovering.current = false)}
     >
       <motion.div
-        className="flex flex-nowrap whitespace-nowrap will-change-transform"
+        className="flex w-max flex-nowrap whitespace-nowrap will-change-transform"
         style={{ x }}
       >
         {Unit}

@@ -13,7 +13,7 @@ export default function About() {
     >
       <div className="px-5 md:px-10">
         <Reveal>
-          <span className="label text-accent">02 / עליי</span>
+          <span className="label text-accent-ink">02 / עליי</span>
         </Reveal>
 
         {/* הצהרה ענקית */}
@@ -46,7 +46,7 @@ export default function About() {
               {STATS.map((s, i) => (
                 <Reveal key={i} delay={i * 0.06} className="bg-bg">
                   <div className="flex flex-col gap-1 p-5">
-                    <span className="display text-4xl text-accent md:text-5xl">
+                    <span className="display text-4xl text-accent-ink md:text-5xl">
                       {s.value}
                     </span>
                     <span className="label text-muted-fg">{s.label}</span>
@@ -60,18 +60,18 @@ export default function About() {
 
       {/* להקת מרקיזה כפולה ענקית — שתי שורות בכיוונים מנוגדים (parallax) */}
       <Parallax amount={60} className="mt-20 flex flex-col gap-2 md:mt-28 md:gap-4">
-        <ScrollMarquee baseVelocity={5} separator="✶" separatorClassName="text-accent">
+        <ScrollMarquee baseVelocity={5} separator="✶" separatorClassName="text-accent-ink">
           <span className="display text-stroke flex items-center gap-[0.35em] text-[15vw] uppercase leading-[1.1] md:text-[11vw]">
             <span>DESIGN</span>
-            <span className="text-accent not-italic [-webkit-text-stroke:0] [color:var(--color-accent)]">·</span>
+            <span className="[-webkit-text-stroke:0] [color:var(--color-accent-ink)]">·</span>
             <span>BUILD</span>
-            <span className="[-webkit-text-stroke:0] [color:var(--color-accent)]">·</span>
+            <span className="[-webkit-text-stroke:0] [color:var(--color-accent-ink)]">·</span>
             <span>REPEAT</span>
           </span>
         </ScrollMarquee>
 
         <ScrollMarquee baseVelocity={-5} separator="✶" separatorClassName="text-fg/40">
-          <span className="display flex items-center gap-[0.35em] text-accent text-[15vw] leading-[1.1] md:text-[11vw]">
+          <span className="display flex items-center gap-[0.35em] text-accent-ink text-[15vw] leading-[1.1] md:text-[11vw]">
             <span>לעצב</span>
             <span className="text-fg/30">·</span>
             <span>לבנות</span>

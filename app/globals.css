@@ -14,6 +14,7 @@
   --color-line: #3f3f46;
   --color-accent: #dfe104;
   --color-accent-fg: #000000;
+  --color-accent-ink: #dfe104; /* אקצנט לטקסט (קריא על הרקע): צהוב בכהה, כהה ב-light */
 
   --font-display: var(--font-heebo), var(--font-grotesk), system-ui, sans-serif;
   --font-body: var(--font-heebo), system-ui, sans-serif;
@@ -23,6 +24,24 @@
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Light theme — דריסת טוקנים. הצבע הצהוב נשמר ל"מילויים" (bg-accent),
+   ואקצנט הטקסט (accent-ink) הופך לכהה כדי להישאר קריא על נייר בהיר.
+   ─────────────────────────────────────────────────────────────────────────── */
+html.light {
+  --color-bg: #f2f1ea;
+  --color-bg-soft: #ffffff;
+  --color-fg: #0a0a0a;
+  --color-muted: #e7e6de;
+  --color-muted-2: #dcdbd1;
+  --color-muted-fg: #5b5b53;
+  --color-line: #18181b; /* גבולות כהים — המראה הברוטליסטי על רקע בהיר */
+  --color-accent: #e3e600; /* צהוב חומצה (מעט עז יותר לקריאות מילוי) */
+  --color-accent-fg: #0a0a0a;
+  --color-accent-ink: #111111; /* אקצנט-טקסט כהה (הצהוב שמור למילויים) */
+  color-scheme: light;
 }
 
 /* ───────────────────────────────────────────────────────────────────────────
@@ -118,7 +137,7 @@
     color: transparent;
   }
   .text-stroke-accent {
-    -webkit-text-stroke: 2px var(--color-accent);
+    -webkit-text-stroke: 2px var(--color-accent-ink);
     color: transparent;
   }
 

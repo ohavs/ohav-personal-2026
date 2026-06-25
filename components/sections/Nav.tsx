@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 import { NAV_LINKS, SITE } from "@/lib/data";
 
 export default function Nav() {
@@ -42,9 +43,9 @@ export default function Nav() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="group flex items-baseline gap-1.5 text-sm font-bold text-fg transition-colors hover:text-accent"
+                  className="group flex items-baseline gap-1.5 text-sm font-bold text-fg transition-colors hover:text-accent-ink"
                 >
-                  <span className="label text-[0.6rem] text-muted-fg transition-colors group-hover:text-accent">
+                  <span className="label text-[0.6rem] text-muted-fg transition-colors group-hover:text-accent-ink">
                     {link.index}
                   </span>
                   {link.label}
@@ -53,36 +54,40 @@ export default function Nav() {
             ))}
           </ul>
 
-          <a
-            href="#contact"
-            className="label hidden border-2 border-line px-4 py-2 text-fg transition-colors duration-150 hover:bg-accent hover:text-accent-fg md:inline-block"
-          >
-            בוא נדבר
-          </a>
+          <div className="flex items-center gap-2 md:gap-3">
+            <ThemeToggle />
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "סגירת תפריט" : "פתיחת תפריט"}
-            aria-expanded={open}
-            className="relative z-[110] flex h-11 w-11 flex-col items-center justify-center gap-1.5 md:hidden"
-          >
-            <span
-              className={`h-0.5 w-7 bg-fg transition-all duration-300 ${
-                open ? "translate-y-2 rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`h-0.5 w-7 bg-fg transition-all duration-300 ${
-                open ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`h-0.5 w-7 bg-fg transition-all duration-300 ${
-                open ? "-translate-y-2 -rotate-45" : ""
-              }`}
-            />
-          </button>
+            <a
+              href="#contact"
+              className="label hidden border-2 border-line px-4 py-2 text-fg transition-colors duration-150 hover:bg-accent hover:text-accent-fg md:inline-block"
+            >
+              בוא נדבר
+            </a>
+
+            {/* Mobile toggle */}
+            <button
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? "סגירת תפריט" : "פתיחת תפריט"}
+              aria-expanded={open}
+              className="relative z-[110] flex h-10 w-10 flex-col items-center justify-center gap-1.5 border-2 border-line md:hidden"
+            >
+              <span
+                className={`h-0.5 w-5 bg-fg transition-all duration-300 ${
+                  open ? "translate-y-2 rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`h-0.5 w-5 bg-fg transition-all duration-300 ${
+                  open ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`h-0.5 w-5 bg-fg transition-all duration-300 ${
+                  open ? "-translate-y-2 -rotate-45" : ""
+                }`}
+              />
+            </button>
+          </div>
         </nav>
       </header>
 
@@ -102,7 +107,7 @@ export default function Nav() {
                   <motion.a
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="display flex items-center gap-4 text-[16vw] leading-tight text-fg transition-colors hover:text-accent"
+                    className="display flex items-center gap-4 text-[16vw] leading-tight text-fg transition-colors hover:text-accent-ink"
                     initial={{ y: "110%" }}
                     animate={{ y: 0 }}
                     transition={{
@@ -111,7 +116,7 @@ export default function Nav() {
                       ease: [0.16, 1, 0.3, 1],
                     }}
                   >
-                    <span className="label text-base text-accent">
+                    <span className="label text-base text-accent-ink">
                       {link.index}
                     </span>
                     {link.label}

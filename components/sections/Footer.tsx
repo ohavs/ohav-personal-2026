@@ -1,42 +1,48 @@
 "use client";
 
-import ScrollMarquee from "@/components/ui/ScrollMarquee";
-import { SITE } from "@/lib/data";
+import { SITE, NAV_LINKS } from "@/lib/data";
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="relative border-t-2 border-line bg-bg">
-      {/* מרקיזה ענקית */}
-      <div className="overflow-hidden border-b-2 border-line py-6 md:py-8">
-        <ScrollMarquee baseVelocity={-7} separator="✶" separatorClassName="text-accent">
-          <span className="display text-stroke text-[12vw] leading-[1.05] md:text-[9vw]">
-            בוא נדבר
-          </span>
-          <span className="display text-accent px-[0.25em] text-[12vw] leading-[1.05] md:text-[9vw]">
-            LET&apos;S TALK
-          </span>
-        </ScrollMarquee>
-      </div>
-
-      <div className="mx-auto flex max-w-[1600px] flex-col gap-8 px-5 py-10 md:flex-row md:items-end md:justify-between md:px-10">
-        <div>
+      <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-10 px-5 py-12 md:grid-cols-3 md:px-10 md:py-16">
+        {/* לוגו + סלוגן */}
+        <div className="md:col-span-1">
           <a href="#top" className="flex items-center gap-2">
-            <span className="display text-4xl text-fg">{SITE.name}</span>
+            <span className="display text-5xl text-fg">{SITE.name}</span>
             <span className="h-2.5 w-2.5 bg-accent" />
           </a>
-          <p className="mt-3 max-w-xs text-sm text-muted-fg">{SITE.tagline}</p>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-fg">
+            {SITE.tagline}
+          </p>
         </div>
 
-        <div className="flex flex-col gap-1 md:items-end">
+        {/* ניווט */}
+        <nav className="flex flex-col gap-2 md:col-span-1">
+          <span className="label mb-2 text-muted-fg">ניווט</span>
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="w-fit text-lg font-bold text-fg transition-colors hover:text-accent-ink"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* יצירת קשר */}
+        <div className="flex flex-col gap-2 md:col-span-1 md:items-end">
+          <span className="label mb-2 text-muted-fg">צור קשר</span>
           <a
             href={`mailto:${SITE.email}`}
-            className="text-lg font-bold text-fg transition-colors hover:text-accent"
+            className="text-lg font-bold text-fg transition-colors hover:text-accent-ink"
           >
             {SITE.email}
           </a>
-          <span className="label text-muted-fg">{SITE.location}</span>
+          <span className="text-muted-fg">{SITE.location}</span>
         </div>
       </div>
 
@@ -44,7 +50,7 @@ export default function Footer() {
         <span className="label text-muted-fg">
           © {year} {SITE.nameLatin}. כל הזכויות שמורות.
         </span>
-        <a href="#top" className="label text-muted-fg transition-colors hover:text-accent">
+        <a href="#top" className="label text-muted-fg transition-colors hover:text-accent-ink">
           חזרה למעלה ↑
         </a>
       </div>

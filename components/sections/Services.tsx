@@ -13,7 +13,7 @@ export default function Services() {
       <div className="px-5 md:px-10">
         <Reveal>
           <div className="flex items-end justify-between border-b-2 border-line pb-5">
-            <span className="label text-accent">03 / שירותים</span>
+            <span className="label text-accent-ink">03 / שירותים</span>
             <span className="label text-muted-fg">מה אני עושה</span>
           </div>
         </Reveal>

@@ -71,7 +71,7 @@ export default function Hero() {
               {SITE.tagline}
             </motion.p>
             <motion.span
-              className="display text-2xl text-accent md:text-3xl"
+              className="display text-2xl text-accent-ink md:text-3xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.8 }}

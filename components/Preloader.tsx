@@ -67,7 +67,7 @@ export default function Preloader() {
                 {SITE.name}
               </motion.h1>
             </div>
-            <span className="display shrink-0 text-[14vw] leading-none text-accent md:text-[8vw] tabular-nums">
+            <span className="display shrink-0 text-[14vw] leading-none text-accent-ink md:text-[8vw] tabular-nums">
               {count}
             </span>
           </div>

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Heebo, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/providers/SmoothScroll";
+import ThemeProvider from "@/components/providers/ThemeProvider";
 import { SITE } from "@/lib/data";
 
 const heebo = Heebo({
@@ -57,7 +58,9 @@ export default function RootLayout({
         >
           דלג לתוכן
         </a>
-        <SmoothScroll>{children}</SmoothScroll>
+        <ThemeProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );

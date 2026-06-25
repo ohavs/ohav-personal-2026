@@ -5,8 +5,8 @@ import * as THREE from "three";
 
 /**
  * סצנת Hero תלת־ממדית (Three.js וניל).
- * אובייקט wireframe גאומטרי בצהוב חומצה + שדה חלקיקים, מגיב לעכבר ולגלילה.
- * מכבד prefers-reduced-motion: מצייר פריים סטטי בלבד ללא לולאת אנימציה.
+ * אובייקט wireframe גאומטרי + שדה חלקיקים, מגיב לעכבר ולגלילה.
+ * הצבעים מותאמים לתמה (כהה/בהיר) ומתעדכנים בזמן אמת באירוע "themechange".
  */
 export default function HeroScene() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -78,6 +78,18 @@ export default function HeroScene() {
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
 
+    // ── צבעים לפי תמה (כהה/בהיר) ──────────────────────────────────────────────
+    const applyColors = () => {
+      const light = document.documentElement.classList.contains("light");
+      knotMat.color.set(light ? 0x111111 : 0xdfe104);
+      ghostMat.color.set(light ? 0x111111 : 0xfafafa);
+      ghostMat.opacity = light ? 0.06 : 0.04;
+      particleMat.color.set(light ? 0x1a1a1a : 0xfafafa);
+      (scene.fog as THREE.FogExp2).color.set(light ? 0xf2f1ea : 0x09090b);
+    };
+    applyColors();
+    window.addEventListener("themechange", applyColors);
+
     // ── אינטראקציה ───────────────────────────────────────────────────────────
     const mouse = { x: 0, y: 0 };
     const target = { x: 0, y: 0 };
@@ -143,6 +155,7 @@ export default function HeroScene() {
       window.removeEventListener("mousemove", onMouse);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("themechange", applyColors);
       knotGeo.dispose();
       knotMat.dispose();
       ghostGeo.dispose();

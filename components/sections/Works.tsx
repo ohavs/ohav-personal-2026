@@ -30,7 +30,7 @@ function ProjectCard({
       <div className="relative z-10 flex h-full flex-col">
         {/* top meta */}
         <div className="flex items-center justify-between border-b-2 border-line px-5 py-3 transition-colors duration-500 group-hover:border-accent-fg/30">
-          <span className="display text-xl text-accent transition-colors duration-300 group-hover:text-accent-fg">
+          <span className="display text-xl text-accent-ink transition-colors duration-300 group-hover:text-accent-fg">
             {project.index}
           </span>
           <span className="label text-muted-fg transition-colors duration-300 group-hover:text-accent-fg">
@@ -144,7 +144,7 @@ export default function Works() {
         <Reveal>
           <div className="flex items-end justify-between border-b-2 border-line pb-5">
             <div className="flex items-baseline gap-4">
-              <span className="label text-accent">01 / עבודות</span>
+              <span className="label text-accent-ink">01 / עבודות</span>
             </div>
             <span className="label text-muted-fg">
               {PROJECTS.length} פרויקטים
@@ -186,11 +186,11 @@ export default function Works() {
               <a
                 href="#contact"
                 dir="rtl"
-                className="display text-5xl leading-tight text-fg transition-colors hover:text-accent"
+                className="display text-5xl leading-tight text-fg transition-colors hover:text-accent-ink"
               >
                 יש לך פרויקט?
                 <br />
-                <span className="text-accent">בוא נדבר ←</span>
+                <span className="text-accent-ink">בוא נדבר ←</span>
               </a>
             </div>
           </div>
