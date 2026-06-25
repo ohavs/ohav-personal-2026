@@ -144,17 +144,3 @@
 .clip-reveal {
   clip-path: inset(0 0 100% 0);
 }
-
-/* ───────────────────────────────────────────────────────────────────────────
-   Reduced motion — accessibility (skill rule: reduced-motion / motion-sensitivity)
-   ─────────────────────────────────────────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-}

@@ -10,13 +10,13 @@ import {
   useAnimationFrame,
   useMotionValue,
   wrap,
-  useReducedMotion,
 } from "framer-motion";
 
 /**
  * מרקיזה מבוססת מהירות גלילה — תנועה רציפה שמואצת ומשנה כיוון לפי הגלילה (parallax).
  * חסינה ל-RTL (ה-track תמיד dir=ltr עם 4 עותקים → לולאה חלקה ללא רווחים).
- * משתמשת ב-overflow-x: clip כך ששום דבר לא נחתך אנכית (סוגריים, ניקוד, גרשיים).
+ * overflow-x: clip כך ששום דבר לא נחתך אנכית (סוגריים, ניקוד, גרשיים).
+ * הערה: התנועה רצה תמיד, ללא תלות בהגדרת prefers-reduced-motion של המערכת (החלטת מותג).
  */
 export default function ScrollMarquee({
   children,
@@ -33,7 +33,6 @@ export default function ScrollMarquee({
   separatorClassName?: string;
   pauseOnHover?: boolean;
 }) {
-  const reduced = useReducedMotion();
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
@@ -52,7 +51,6 @@ export default function ScrollMarquee({
   const hovering = useRef(false);
 
   useAnimationFrame((_, delta) => {
-    if (reduced) return;
     if (hovering.current && pauseOnHover) return;
 
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);

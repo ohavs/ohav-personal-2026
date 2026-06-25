@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { SITE } from "@/lib/data";
 
 /**
@@ -9,18 +9,11 @@ import { SITE } from "@/lib/data";
  * נועל גלילה בזמן האינטרו ומשחרר בסיום.
  */
 export default function Preloader() {
-  const reduced = useReducedMotion();
   const [count, setCount] = useState(0);
   const [done, setDone] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-
-    if (reduced) {
-      setCount(100);
-      const t = setTimeout(() => finish(), 400);
-      return () => clearTimeout(t);
-    }
 
     const start = performance.now();
     const DURATION = 1900;
@@ -48,7 +41,7 @@ export default function Preloader() {
 
     return () => cancelAnimationFrame(raf);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reduced]);
+  }, []);
 
   return (
     <AnimatePresence>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, ReactNode, MouseEvent } from "react";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 /**
  * כפתור/קישור מגנטי — נמשך בעדינות לעבר הסמן.
@@ -23,7 +23,6 @@ export default function MagneticButton({
   ariaLabel?: string;
 }) {
   const ref = useRef<HTMLAnchorElement & HTMLButtonElement>(null);
-  const reduced = useReducedMotion();
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -31,7 +30,7 @@ export default function MagneticButton({
   const sy = useSpring(y, { stiffness: 200, damping: 15, mass: 0.4 });
 
   const handleMove = (e: MouseEvent) => {
-    if (reduced || !ref.current) return;
+    if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const relX = e.clientX - (rect.left + rect.width / 2);
     const relY = e.clientY - (rect.top + rect.height / 2);

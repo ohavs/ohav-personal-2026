@@ -15,10 +15,6 @@ export default function HeroScene() {
     const mount = mountRef.current;
     if (!mount) return;
 
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
     const width = mount.clientWidth;
     const height = mount.clientHeight;
 
@@ -140,11 +136,7 @@ export default function HeroScene() {
       frame = requestAnimationFrame(animate);
     };
 
-    if (prefersReduced) {
-      render(); // פריים סטטי אחד
-    } else {
-      animate();
-    }
+    animate();
 
     return () => {
       cancelAnimationFrame(frame);

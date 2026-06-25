@@ -1,11 +1,10 @@
 "use client";
 
 import { useRef, ReactNode } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 /**
  * עוטף תוכן בתנועת parallax לפי מיקום הגלילה (זז כשגוללים).
- * מכבד prefers-reduced-motion.
  */
 export default function Parallax({
   children,
@@ -17,16 +16,11 @@ export default function Parallax({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(
-    scrollYProgress,
-    [0, 1],
-    reduced ? [0, 0] : [amount, -amount]
-  );
+  const y = useTransform(scrollYProgress, [0, 1], [amount, -amount]);
 
   return (
     <div ref={ref} className={className}>

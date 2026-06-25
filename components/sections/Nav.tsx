@@ -1,13 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS, SITE } from "@/lib/data";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const reduced = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -104,7 +103,7 @@ export default function Nav() {
                     href={link.href}
                     onClick={() => setOpen(false)}
                     className="display flex items-center gap-4 text-[16vw] leading-tight text-fg transition-colors hover:text-accent"
-                    initial={{ y: reduced ? 0 : "110%" }}
+                    initial={{ y: "110%" }}
                     animate={{ y: 0 }}
                     transition={{
                       duration: 0.6,

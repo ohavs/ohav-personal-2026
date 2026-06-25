@@ -1,10 +1,10 @@
 "use client";
 
 import { ReactNode } from "react";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 /**
- * חושף תוכן בכניסה לוויופורט. תנועה עדינה (ease-out לכניסה — חוק מהסקיל).
+ * חושף תוכן בכניסה לוויופורט. תנועה עם ease-out לכניסה (חוק מהסקיל).
  */
 export default function Reveal({
   children,
@@ -19,10 +19,8 @@ export default function Reveal({
   className?: string;
   once?: boolean;
 }) {
-  const reduced = useReducedMotion();
-
   const variants: Variants = {
-    hidden: { opacity: 0, y: reduced ? 0 : y },
+    hidden: { opacity: 0, y },
     show: {
       opacity: 1,
       y: 0,
@@ -48,7 +46,7 @@ export default function Reveal({
 }
 
 /**
- * חשיפת טקסט מילה-אחר-מילה עם stagger (30–50ms בין מילים — חוק מהסקיל).
+ * חשיפת טקסט מילה-אחר-מילה עם stagger (חוק מהסקיל).
  */
 export function RevealWords({
   text,
@@ -61,7 +59,6 @@ export function RevealWords({
   wordClassName?: string;
   delay?: number;
 }) {
-  const reduced = useReducedMotion();
   const words = text.split(" ");
 
   return (
@@ -70,7 +67,7 @@ export function RevealWords({
         <span key={i} className="inline-block overflow-hidden align-bottom">
           <motion.span
             className={`inline-block ${wordClassName}`}
-            initial={{ y: reduced ? 0 : "110%", opacity: reduced ? 1 : 0 }}
+            initial={{ y: "110%", opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{

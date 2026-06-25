@@ -1,21 +1,20 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import HeroScene from "@/components/three/HeroScene";
 import { SITE } from "@/lib/data";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
-  const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
 
-  const yName = useTransform(scrollYProgress, [0, 1], [0, reduced ? 0 : -120]);
+  const yName = useTransform(scrollYProgress, [0, 1], [0, -120]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const sceneScale = useTransform(scrollYProgress, [0, 1], [1, reduced ? 1 : 1.25]);
+  const sceneScale = useTransform(scrollYProgress, [0, 1], [1, 1.25]);
 
   return (
     <section
@@ -54,7 +53,7 @@ export default function Hero() {
           <div className="overflow-hidden">
             <motion.h1
               className="display text-[24vw] leading-[0.85] text-fg md:text-[20vw]"
-              initial={{ y: reduced ? 0 : "110%" }}
+              initial={{ y: "110%" }}
               animate={{ y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
@@ -65,7 +64,7 @@ export default function Hero() {
           <div className="mt-2 flex flex-col gap-4 border-t-2 border-line pt-4 md:flex-row md:items-end md:justify-between">
             <motion.p
               className="max-w-md text-lg font-medium leading-snug text-muted-fg md:text-xl"
-              initial={{ opacity: 0, y: reduced ? 0 : 20 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
@@ -94,7 +93,7 @@ export default function Hero() {
         <span className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-line p-1">
           <motion.span
             className="h-2 w-1 rounded-full bg-accent"
-            animate={reduced ? {} : { y: [0, 12, 0] }}
+            animate={{ y: [0, 12, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           />
         </span>
